@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <head>
+
+    </head>
+    <body>
+        <form class="login-form" action="{% url 'userapp:login' %}" method="post">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="login">
+        </form>
+        {% if user.is_authenticated %}
+            <p>welcome {{user.name}}</p>
+        {% endif %}
+    </body>
+</html>

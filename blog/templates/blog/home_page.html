@@ -1,4 +1,22 @@
-<!DOCTYPE html>
-<html>
-    <h1><a href="{% url 'post:list'  %}">yes</a></h1>
-</html>
+{% extends 'blog/base_layout.html' %}
+
+    {% block title %} gadamer1의 블로그 {% endblock %}
+
+    {% block content %}
+        <div class="login">
+                {% csrf_token %}
+                {% if user.is_authenticated %}
+                <p>환영합니다 {{user.username}} 님!</p>
+                <p><a href="{% url 'userapp:logout' %}">로그아웃</a></p>
+                {% else %}
+                    <h1><a href="{% url 'userapp:login' %}">로그인</a></h1>
+                {% endif %}
+        </div>
+    
+        <div class="post_list">
+            <h1><a href="{% url 'blog:list' %}">블로그 글 리스트</a></h1>
+        </div>
+        
+        
+
+    {% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base_layout.html' %}
+    {% load static %}
+    {% block title %} gadamer1의 블로그 {% endblock %}
+
+    {% block stylesheets %}
+  <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
+    {% endblock %}
+
+    {% block head %}
+        <nav class="banner">
+            <h1 class="welcome_title">
+                안녕하세요, gadamer1의 블로그입니다.
+            </h1>
+            <li class="navigation">
+                <ul><a href="/#"></a> 로그인</ul>
+                <ul>목차</ul>
+                <ul>블로그 글 보기</ul>
+            </li>
+        </nav>
+    {% endblock %}
+
+    {% block content %}
+        <div class="login">
+                {% csrf_token %}
+                {% if user.is_authenticated %}
+                <p class="welcome-user">환영합니다 {{user.username}} 님!</p>
+                <p><a href="{% url 'userapp:logout' %}">로그아웃</a></p>
+                {% else %}
+                    <h1><a href="{% url 'userapp:login' %}">로그인</a></h1>
+                {% endif %}
+        </div>
+    
+        <div class="post-list">
+            <h1><a href="{% url 'blog:posts' %}">블로그 글 리스트</a></h1>
+        </div>
+        
+        
+
+    {% endblock %}

@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <head>
+        <title>{% block title %} {% endblock %}</title>
+        {% block stylesheets %} {% endblock %}
+    </head>
+
+    <body>
+        <header class="wrapper">
+            <h1><a href="{% url 'about' %}"><img src="{% static '다운로드.jpg'%}" alt="??"></a></h1>
+            <div class="nav">
+               <ul>
+                   <li><a href="{% url 'blog:about' %}">ABOUT</a></li>
+                   <li><a href="{% url 'blog:posts' %}">POSTS</a></li>
+                   <li><a href="{% url 'blog:algorithm' %}">ALGORITM</a></li>
+                   <li><a href="{% url 'blog:hacking' %}">HACKING</a></li>
+                   <li><a href="{% url 'blog:eating' %}">EATING</a></li>
+                   {% if user.is_authenticated %}
+                   <!--logout form-->
+                   <li>
+                       <form class="log-out" action="{% url 'userapp:logout' %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit">logout</button>
+                       </form>
+                   </li>
+                   {% else %}
+                   <li><a href="{% url 'userapp:login' %}">로그인</a></li>
+                   {% endif %}
+
+               </ul>
+            </div>
+         {% block content %}
+         {% endblock %}
+        </header>
+    </body>
+</html>

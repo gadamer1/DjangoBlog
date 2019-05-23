@@ -1,4 +1,4 @@
-{% extends 'blog/base_layout.html' %}
+{% extends 'base_layout.html' %}
 
 
     {% block title %} List {% endblock %}
@@ -7,9 +7,10 @@
         <div class="posts">
             {% for post in posts %}
             <div class="post">
-                <h1><a href="{% url 'blog:detail' post.slug%}">{{post.title}}</a></h1>
+                <h1><a href="{% url 'blog:hacking_detail' post.slug%}">{{post.title}}</a></h1>
                 <p>{{post.snippet}}</p>
                 <p>{{post.published_date}}</p>
+                <p></p>
                 <img src="{{post.thumb_nail.url}}">
             </div>
             {% endfor %}

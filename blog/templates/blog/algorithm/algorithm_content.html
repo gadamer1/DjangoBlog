@@ -1,6 +1,10 @@
-{% extends 'blog/base_layout.html' %}
-
+{% extends 'base_layout.html' %}
+{% load static %}
 {% block title %} {{post.title}} {% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static '/css/base.css' %}">
+{% endblock %}
 
 {% block content %}
     <div class = "post">

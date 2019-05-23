@@ -5,13 +5,16 @@
 
     </head>
     <body>
+        {%if form.errors %}
+        <p>ID나 PW가 일치하지 않습니다</p>
+        {% endif %}
         <form class="login-form" action="{% url 'userapp:login' %}" method="post">
             {% csrf_token %}
             {{form}}
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next}}">
+            {% endif %}
             <input type="submit" value="login">
         </form>
-        {% if user.is_authenticated %}
-            <p>welcome {{user.name}}</p>
-        {% endif %}
     </body>
 </html>

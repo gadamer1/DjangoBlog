@@ -33,6 +33,12 @@
         <div class="post-list">
             <h1><a href="{% url 'blog:posts' %}">블로그 글 리스트</a></h1>
         </div>
+        {% if user.is_authenticated %}
+        <div class="post-create">
+            {% csrf_token %}
+            <button><a href="{% url 'blog:post_create' %}">create</a></button>
+        </div>
+        {% endif %}
         
         
 

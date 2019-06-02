@@ -1,24 +1,18 @@
-{% extends 'base_layout.html' %}
+{% extends 'base_list.html' %}
+{% load static %}
 
+{% block head %}
+<div class="head">
+        <img class='head-img' src="{%static 'img/head/hacking.jpg'%}" alt="">
+        <p class="head-title">Studying hacking</p>
+      </div>
+{% endblock %}
 
-    {% block title %} List {% endblock %}
-
-    {% block content %}
-        <div class="posts">
-            {% for post in posts %}
-            <div class="post">
-                <h1><a href="{% url 'blog:hacking_detail' post.slug%}">{{post.title}}</a></h1>
-                <p>{{post.snippet}}</p>
-                <p>{{post.published_date}}</p>
-                <p></p>
-                <img src="{{post.thumb_nail.url}}">
-            </div>
-            {% endfor %}
-        </div>
-        {% if user.is_authenticated %}
-        <div class="post-create">
-            {% csrf_token %}
-            <button><a href="{% url 'blog:hacking_create' %}">create</a></button>
-        </div>
-        {% endif %}
-    {% endblock %}
+{% block create %}
+    {% if user.is_authenticated %}
+    <div class="post-create">
+        {% csrf_token %}
+        <button><a href="{% url 'blog:hacking_create' %}">create</a></button>
+    </div>
+    {% endif %}
+{% endblock %}

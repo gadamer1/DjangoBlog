@@ -1,9 +1,8 @@
 {% extends 'base_layout.html' %}
 
-
 {% block content %}
 <div class="markdownx">
-    <form name='create-form' action="{% url 'blog:post_create' %}" method="POST" enctype="multipart/form-data">       
+    <form name='create-form' action="{% url 'blog:post_create'%}" method="POST" enctype="multipart/form-data">       
         {% csrf_token%}
         {{form}}
         <input type="submit" value="Create">

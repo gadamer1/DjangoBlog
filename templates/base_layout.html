@@ -3,37 +3,81 @@
 <html>
     <meta charset="UTF-8">
     <head>
-        <title>{% block title %} {% endblock %}</title>
-        {% block stylesheets %} {% endblock %}
-    </head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="description" content="">
+            <meta name="author" content="">
 
+
+            <link rel="stylesheet" href="{% static 'markdownx/admin/css/markdownx.css' %}">
+            <!--title code-->
+            <title>{% block title %} {% endblock %}</title>
+            
+            <!-- Bootstrap core CSS -->
+            <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+          
+            <!-- Custom fonts for this template -->
+            <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+            <link href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet" type="text/css">
+            <link href="{% static 'https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' %}" rel="stylesheet" type="text/css">
+          
+            <!-- Custom styles for this template -->
+            <link href="{% static 'css/landing-page.min.css' %} " rel="stylesheet">
+            <link rel="stylesheet" href="{%static 'css/base.css'%}" type="text/css">
+        <!--facebook comments plugin-->
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v3.3"></script>
+        <!------------------------->
+
+        {% block stylesheets %} {% endblock %}
+        <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+        
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages%}
+            <li {% if message.tags %} class="{{message.tag}}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <nav class="navbar navbar-light bg-light static-top nav-background">
+                <div class="container">
+                    <a href="{% url 'blog:about' %}">ABOUT</a>
+                    <a href="{% url 'blog:posts' %}">POSTS</a>
+                    <a href="{% url 'blog:algorithm' %}">ALGORITM</a>
+                    <a href="{% url 'blog:hacking' %}">HACKING</a>
+                    <a href="{% url 'blog:eating' %}">EATING</a>
+                    <a href="{% url 'blog:services' %}">SERVICES</a>
+           
+    </head>
+    
     <body>
         <header class="wrapper">
-            <h1><a href="{% url 'about' %}"><img src="{% static '다운로드.jpg'%}" alt="??"></a></h1>
-            <div class="nav">
-               <ul>
-                   <li><a href="{% url 'blog:about' %}">ABOUT</a></li>
-                   <li><a href="{% url 'blog:posts' %}">POSTS</a></li>
-                   <li><a href="{% url 'blog:algorithm' %}">ALGORITM</a></li>
-                   <li><a href="{% url 'blog:hacking' %}">HACKING</a></li>
-                   <li><a href="{% url 'blog:eating' %}">EATING</a></li>
-                   <li><a href="{% url 'blog:services' %}">SERVICES</a></li>
+            <!-- Navigation -->
+             <!--logout form-->
                    {% if user.is_authenticated %}
-                   <!--logout form-->
-                   <li>
-                       <form class="log-out" action="{% url 'userapp:logout' %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit">logout</button>
-                       </form>
-                   </li>
-                   {% else %}
-                   <li><a href="{% url 'userapp:login' %}">로그인</a></li>
-                   {% endif %}
-
-               </ul>
-            </div>
-         {% block content %}
-         {% endblock %}
+                        <div class="login-container">
+                            <div class="login">
+                                {% csrf_token %}
+                                <p>환영합니다 {{user.username}} 님!</h2>
+                                <p><a href="{% url 'userapp:logout' %}">로그아웃</a></p>
+                    {% else %}
+                                <p><a href="{% url 'userapp:login' %}">로그인</a></p>
+                            </div>
+                        </div>
+                    {% endif %}
+                        </div>
+                      </nav>
+            <!-- Masthead -->
+            {%block head%}
+            {% endblock %}
+            
+            {% block content %}
+            {% endblock %}
+            
         </header>
+
+            <!-- Bootstrap core JavaScript -->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

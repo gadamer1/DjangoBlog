@@ -1,0 +1,55 @@
+{% extends 'base_layout.html' %}
+
+
+    {% block title %} List {% endblock %}
+
+    {% block content %}
+    <!-- Image Showcases -->
+  <section class="showcase">
+    <div class="container-fluid p-0">
+    {% for post in posts %}
+      <div class="row no-gutters">
+        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image : url({{MEDIA_URL}}{{post.thumb_nail.url}});"></div>
+        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+          <h1 class="post-title"><a class="post-title" href="{% url 'blog:post_detail' post.slug%}">{{post.title}}</a></h2>
+          <p class="lead mb-0">{{post.snippet}}</p>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+    {% block create %}
+    
+    {% endblock%}
+    
+
+        {# pagination #}
+        <nav class="pagination">
+            <ul class="pagination">
+            {% if posts.has_previous %}
+                <li>
+                    <a href="?page={{ page_start_index }}">
+                        <span>Prev</span>
+                    </a>
+                </li>
+            {% endif %}
+            
+            {% for i in page_range %}
+                {% if i == posts.number %}
+                <li class="active"><span>{{ i }}</span></li>
+                {% else %}
+                <li class="active">
+                    <span><a href="?page={{ i }}">{{i}}</a></span>
+                </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if posts.has_next %}
+                <li>
+                    <a href="?page={{ page_end_index}}">
+                        <span>Next</span>
+                </a>
+                </li>
+            {% endif %}
+            </ul>
+        </nav>
+    {% endblock %}

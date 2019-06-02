@@ -1,0 +1,33 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% block title %} {{post.title}} {% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'splendor/css/splendor.css'%}">
+{% endblock %}
+
+{% block content %}
+    <div class = "post" style="text-align: center; margin: 0 auto;">
+        <img class="head-image" src="{{post.thumb_nail.url}}" style="opacity: 0.9;
+        height: 300px;
+        width: 100%;
+        object-fit: cover;" >
+        <div class = "date">
+            {{post.published_date}}
+        </div>
+        <h1 class="content-title">{{post.title}}</a></h1>
+        <p>{{post.formatted_markdownx|safe}}</p>
+    </div>
+
+{% if user.is_authenticated %}
+    <div class="edit">
+        <button name="edit"><a href="{% url 'blog:post_edit' post.slug %}">edit</a></button>
+    </div>
+    <div class="delete">
+        <button name="delete"><a href="{% url 'blog:post_delete' post.slug %}">delete</a></button>
+    </div>
+{% endif %}
+
+<div class="fb-comments" data-href="{{request.build_absolute_uri}}" data-width="" data-numposts="5" style="text-align: center"></div>
+{% endblock %}

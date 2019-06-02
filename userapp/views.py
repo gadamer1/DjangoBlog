@@ -21,7 +21,6 @@ def login_view(request):
 
 
 def logout_view(request):
-    if request.method =='POST':
-        logout(request)
-        return redirect('blog:about')
+    logout(request)
+    return render(request,'blog/about/about.html')
 

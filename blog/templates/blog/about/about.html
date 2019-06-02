@@ -3,43 +3,60 @@
     {% block title %} gadamer1의 블로그 {% endblock %}
 
     {% block stylesheets %}
-  <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
     {% endblock %}
 
     {% block head %}
-        <nav class="banner">
-            <h1 class="welcome_title">
-                안녕하세요, gadamer1의 블로그입니다.
-            </h1>
-            <li class="navigation">
-                <ul><a href="/#"></a> 로그인</ul>
-                <ul>목차</ul>
-                <ul>블로그 글 보기</ul>
-            </li>
-        </nav>
+    <div class="head">
+      <img class='head-img' src="{%static 'img/head/about.jpg'%}" alt="">
+      <p class="head-title">welcome, <br> gadamer's blog</p>     
+    </div>
     {% endblock %}
 
     {% block content %}
-        <div class="login">
-                {% csrf_token %}
-                {% if user.is_authenticated %}
-                <p class="welcome-user">환영합니다 {{user.username}} 님!</p>
-                <p><a href="{% url 'userapp:logout' %}">로그아웃</a></p>
-                {% else %}
-                    <h1><a href="{% url 'userapp:login' %}">로그인</a></h1>
-                {% endif %}
+    <!-- Testimonials -->
+    <section class="body">
+  <section class="testimonials text-center bg-light">
+        <div class="container">
+          <h2 class="mb-5">What contents in my blog..</h2>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                <img class="img-fluid rounded-circle mb-3" src="{% static 'img/posts.jpg' %}" alt="">
+                <h5>POSTS</h5>
+                <p class="font-weight-light mb-0"><h1><a href="{% url 'blog:posts' %}">내가 생각하는 것들...</a></h1></p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                <img class="img-fluid rounded-circle mb-3" src="{% static 'img/algorithm.jpg' %}" alt="">
+                <h5>ALGORITHM</h5>
+                <p class="font-weight-light mb-0"><h1><a href="{% url 'blog:algorithm' %}">알고리즘 공부</a></h1></p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                <img class="img-fluid rounded-circle mb-3" src="{% static 'img/hacking.jpg' %}" alt="">
+                <h5>HACKING</h5>
+                <p class="font-weight-light mb-0"><h1><a href="{% url 'blog:hacking' %}">해킹 포스팅</a></h1></p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                      <img class="img-fluid rounded-circle mb-3" src="{% static 'img/eating.jpg' %}" alt="">
+                      <h5>EATING</h5>
+                      <p class="font-weight-light mb-0"><h1><a href="{% url 'blog:eating' %}">맛집 리스트</a></h1></p>
+                    </div>
+            </div>
+            <div class="col-lg-4">
+                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                      <img class="img-fluid rounded-circle mb-3" src="{% static 'img/services.jpg' %}" alt="">
+                      <h5>SERVICES</h5>
+                      <p class="font-weight-light mb-0"><h1><a href="{% url 'blog:services' %}">개발한 서비스</a></h1></p>
+                    </div>
+            </div>
+          </div>
         </div>
-    
-        <div class="post-list">
-            <h1><a href="{% url 'blog:posts' %}">블로그 글 리스트</a></h1>
-        </div>
-        {% if user.is_authenticated %}
-        <div class="post-create">
-            {% csrf_token %}
-            <button><a href="{% url 'blog:post_create' %}">create</a></button>
-        </div>
-        {% endif %}
-        
-        
+      </section>    
+    </section>
 
     {% endblock %}

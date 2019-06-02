@@ -1,4 +1,117 @@
-.wrapper{
-    background-color:burlywood;
-    opacity: 0.3;
+.post{
+    text-align: center;
+    margin: 0 auto;
+}
+
+body{
+    font-family: 'Merriweather', Georgia, serif
+}
+
+a,a.container{
+    color: white;
+    text-decoration: none;
+    font-size: small;
+    border: 0.3rem solid;
+    border-color: #007bff;
+    border-radius: 5px;
+    background-color: #007bff;
+}
+
+a:hover{
+    border-color: #0056b3;
+    color: whitesmoke;
+    background-color: #0056b3;
+}
+
+
+.login-container{
+    text-align: center;
+}
+p{
+    text-align: center
+}
+
+button{
+    border:none;
+    background-color: transparent;
+
+}
+
+li.active{
+    border:none;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+.pagination{
+    margin:0 auto;
+    display: flex;
+
+}
+
+.post-create{
+    text-align: center;
+}
+
+h1.post-title{
+    text-align: center;
+}
+
+h1.content-title{
+    
+}
+a.post-title{
+    border: solid;
+    background-color: black;
+    color: white;
+    border-color: black;
+    font-size: 40px;
+    border-radius: 5px
+}
+
+.markdownx .markdownx-editor, .markdownx .markdownx-preview {
+    margin-left: 0;
+    display: inline-block;
+    border: solid;
+    width: 610px;
+}
+
+input#id_title,input#id_snippet{
+    border:solid;
+    width:40%;
+}
+
+
+p.head-title {
+    position: absolute;
+    font-size: 50px;
+    left:400px;
+    top:200px;
+    color: #f0f5f5;
+    -webkit-text-stroke-width: 0.3px; 
+    -webkit-text-stroke-color: black;
+}
+
+
+img.head-img {
+    opacity: 0.9;
+    position: absolute;
+    object-fit: cover;
+    height: 300px;
+    width: 100%;
+}
+
+section.showcase
+,section.body{
+    margin-top: 300px;
+}
+
+h1.content-title{
+    position: absolute;
+    top: 150px;
+    color: white;
+    left: 150px;
+    bottom: 0px;
+    -webkit-text-stroke-width: 0.3px; 
+    -webkit-text-stroke-color: black;
 }

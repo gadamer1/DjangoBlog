@@ -2,8 +2,10 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django_markdownx.markdownx.models import MarkdownxField
-from django.template.defaultfilters import slugify
-
+from django.utils.text import slugify
+from django.utils.http import urlencode
+from django_markdownx.markdownx.utils import markdownify
+from unidecode import unidecode
 class Post(models.Model):
     CATEGORY_CHOICES=(
         ('POSTS','posts'),
@@ -31,9 +33,8 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = slugify(self.title)
-        super(Post,self).save(*args,**kwargs)
-            
+    def my_slugify(self):
+        self.slug = slugify(unidecode(self.title))
+        
+    def formatted_markdownx(self):
+        return markdownify(self.body)

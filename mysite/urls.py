@@ -25,7 +25,6 @@ urlpatterns = [
     path('userapp/',include('userapp.urls')),
     path('',blog_views.about, name='about'),
     path('markdownx/',include(markdownx)),
-    path('test/',include('blog.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -1,18 +1,1 @@
-{% extends 'base_layout.html' %}
-{% load static %}
-{% block title %} {{post.title}} {% endblock %}
-
-{% block stylesheets %}
-<link rel="stylesheet" href="{% static '/css/base.css' %}">
-{% endblock %}
-
-{% block content %}
-    <div class = "post">
-        <div class = "date">
-            {{post.published_date}}
-        </div>
-        <h1>{{post.title}}</a></h1>
-        <p>{{post.text|linebreaksbr}}</p>
-        <img src="{{post.thumb_nail.url}}" >
-    </div>
-{% endblock %}
+{% extends 'base_content.html%}
